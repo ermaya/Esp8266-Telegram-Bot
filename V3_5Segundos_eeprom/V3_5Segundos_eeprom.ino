@@ -276,6 +276,7 @@ void handleNewMessages(int numNewMessages) {         // ---------- Telgram funct
       bot->sendMessage(chat_id, "Maniobra Puerta2");
     }
     if (text == "/PP") {
+      bot->sendChatAction(chat_id, "typing");
       peaTonal();
       bot->sendMessage(chat_id, "Maniobra PP");
     }
@@ -301,7 +302,7 @@ void handleNewMessages(int numNewMessages) {         // ---------- Telgram funct
     }
     if (text == "/Temp") {
       //Serial.end();
-      //delay (500);//Retardo
+      bot->sendChatAction(chat_id, "typing");
       sensors.requestTemperatures();   //Se envía el comando para leer la temperatura
       float temp= sensors.getTempCByIndex(0); //Se obtiene la temperatura en ºC
       bot->sendMessage(chat_id, "temperatura "+ String(temp)+"º"); 
@@ -309,18 +310,20 @@ void handleNewMessages(int numNewMessages) {         // ---------- Telgram funct
     }
     if (text == "/Estado") {
       //Serial.end();
-      //delay (500);//Retardo
+      bot->sendChatAction(chat_id, "typing");
       sensors.requestTemperatures();   //Se envía el comando para leer la temperatura
       float temp= sensors.getTempCByIndex(0); //Se obtiene la temperatura en ºC
       bot->sendMessage(chat_id, "Puerta " + String(esTadoPuerta)+ ".\n" + "Sensor " + String(esTadoPir)+ ".\n"+ "Luz " + String(esTadoLuz)+ ".\n"+ "Aux " + String(esTadoAux2)+ ".\n"+"temperatura "+ String(temp)+"º" + ".");
       //Serial.begin(115200);
     }
     if (text == "/tecla" || text == "/Tecla") {
+      bot->sendChatAction(chat_id, "typing");
       String keyboardJson = "[[\"/Puerta\", \"/PP\", \"/Puerta2\", \"/Luz\", \"/Aux\"],[\"/Estado\",\"/Pir\", \"/AireOn\", \"/AireOff\", \"/Temp\"]]";
       bot->sendMessageWithReplyKeyboard(chat_id, "Teclado", "", keyboardJson, true);
     }
 
     if (text == "/Ayuda" || text == "/ayuda") {
+      bot->sendChatAction(chat_id, "typing");
       String welcome = "El Maya le da la Bienvenida, " + from_name + ".\n";
       welcome += "Funciones disponibles.\n";
       welcome += "/Puerta= Maniobra\n";
@@ -490,7 +493,7 @@ void setup() {                  //------------------------ SETUP----------------
     }
     
     irsend.begin();                    //inicio IR
-    bot->sendMessage(defaultChatId, "Hola!");   //mensaje inicio
+    //bot->sendMessage(defaultChatId, "Hola!");   //mensaje inicio
 }
 
 void loop() {
