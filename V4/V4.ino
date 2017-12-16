@@ -245,7 +245,6 @@ void handleNewMessages(int numNewMessages) {         // ---------- Telgram funct
     bot->sendMessage(chat_id,timeClient.getFormattedTime() + ".\n" + String(chat_id));
     }
     if(chat_id != defaultChatId) return;     // reject messages from other chats
-    //timeClient.update();      //---------------------test 09.12.17-----------------------------------
     //Serial.print("Hora Actual: ");
     //Serial.println(timeClient.getEpochTime());
     //Serial.print("Hora mensaje ");
@@ -283,14 +282,17 @@ void handleNewMessages(int numNewMessages) {         // ---------- Telgram funct
       bot->sendMessage(chat_id, "Maniobra PP");
     }
      if (text == "/AireOn") {
+      bot->sendChatAction(chat_id, "typing");
       aire_on();
       bot->sendMessage(chat_id, "Aire ON 26º Calentar");
     }
     if (text == "/AireOff") {
+      bot->sendChatAction(chat_id, "typing");
       aire_off();
       bot->sendMessage(chat_id, "Aire OFF");
     }
     if (text == "/Pir") {
+      bot->sendChatAction(chat_id, "typing");
       contolPIR();
       bot->sendMessage(chat_id, "Ok Sensor de Movimiento " + String(esTadoPir));
     }
