@@ -1,7 +1,7 @@
 PIN_LUZ           D0   Luz On Off                       activo nivel bajo
 PIN_MANIOBRA      D1   Puerta1   peatonal  5 segundos   activo nivel bajo
 PIN_MANIOBRA2     D2   Puerta2                          activo nivel bajo
-WiFi_CONFID       D3   Configuracion WiFi pulsar 5 segundos
+WiFi_CONFIG       D3   Configuracion WiFi pulsar 5 segundos
 PIN_AUX           D4   Aux On Off                       activo nivel bajo
 PIN_IR            D5   Emisor IR
 PIN_PIR_IN        D6   Entrada sensor Pir activo nivel alto
