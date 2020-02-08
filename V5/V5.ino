@@ -137,7 +137,7 @@ void tick()                                      //---------- Tiker ------------
   int state = digitalRead(LED_ESTADO);  // get the current state of D4 pin
   digitalWrite(LED_ESTADO, !state);     // set pin to the opposite state
 }
-void interuptSensorPir() {                        //---------- Interupt Pir ---------------------
+ICACHE_RAM_ATTR void interuptSensorPir() {                        //---------- Interupt Pir ---------------------
   if ( PirHighLow == 0 ) return;
   int sensorP = digitalRead(PIN_PIR_IN);
   if(sensorP == HIGH){
@@ -518,6 +518,7 @@ if (drd.detectDoubleReset()) {
   //ticker.attach(2.5, tick);
     ticker.detach();
     bot = new UniversalTelegramBot(botToken, client);
+    client.setInsecure();
     bot->longPoll = 10;
     timeClient.begin();
     timeClient.update();
